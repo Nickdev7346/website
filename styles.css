@@ -316,6 +316,11 @@
     text-shadow: 0 0 10px rgba(63, 185, 80, 0.5);
 }
 
+.info-value.offline {
+    color: #ea4335;
+    text-shadow: 0 0 10px rgba(234, 67, 53, 0.5);
+}
+
 /* Features Section */
 .features {
     padding: 5rem 0;

@@ -70,10 +70,12 @@ function showCopyFeedback(button) {
     }, 2000);
 }
 
-// Fetch real player count from FiveM server
+// Fetch real player count and status from FiveM server
 async function updatePlayerCount() {
     const playerCountElement = document.getElementById('player-count');
-    if (!playerCountElement) return;
+    const serverStatusElement = document.getElementById('server-status');
+    
+    if (!playerCountElement && !serverStatusElement) return;
 
     try {
         // Using FiveM server browser API endpoint
@@ -88,15 +90,43 @@ async function updatePlayerCount() {
             const data = await response.json();
             const currentPlayers = data.Data?.clients || data.clients || 0;
             const maxPlayers = data.Data?.sv_maxclients || data.sv_maxclients || 128;
-            playerCountElement.textContent = `${currentPlayers}/${maxPlayers}`;
+            
+            // Update player count
+            if (playerCountElement) {
+                playerCountElement.textContent = `${currentPlayers}/${maxPlayers}`;
+            }
+            
+            // Update server status
+            if (serverStatusElement) {
+                const isOnline = response.ok && data && (data.Data || data);
+                if (isOnline) {
+                    serverStatusElement.textContent = 'Online';
+                    serverStatusElement.className = 'info-value online';
+                } else {
+                    serverStatusElement.textContent = 'Offline';
+                    serverStatusElement.className = 'info-value';
+                }
+            }
         } else {
             // Fallback if API call fails
-            playerCountElement.textContent = 'N/A';
+            if (playerCountElement) {
+                playerCountElement.textContent = 'N/A';
+            }
+            if (serverStatusElement) {
+                serverStatusElement.textContent = 'Offline';
+                serverStatusElement.className = 'info-value';
+            }
         }
     } catch (error) {
-        console.error('Error fetching player count:', error);
+        console.error('Error fetching server info:', error);
         // Fallback display on error
-        playerCountElement.textContent = 'N/A';
+        if (playerCountElement) {
+            playerCountElement.textContent = 'N/A';
+        }
+        if (serverStatusElement) {
+            serverStatusElement.textContent = 'Offline';
+            serverStatusElement.className = 'info-value';
+        }
     }
 }
 
