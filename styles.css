@@ -666,20 +666,16 @@
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .links-content .link-card:nth-child(4),
-    .links-content .link-card:nth-child(5) {
-        grid-column: span 1;
+    /* Reset manual grid placement on smaller screens to prevent overlap */
+    .links-content .link-card {
+        grid-column: auto !important;
+        grid-row: auto !important;
     }
 }
 
 @media (max-width: 640px) {
     .links-content {
         grid-template-columns: 1fr;
-    }
-    
-    .links-content .link-card:nth-child(4),
-    .links-content .link-card:nth-child(5) {
-        grid-column: span 1;
     }
 }
 
