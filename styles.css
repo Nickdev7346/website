@@ -656,6 +656,11 @@
     grid-row: 2;
 }
 
+.links-content .link-card:nth-child(7) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
 @media (max-width: 968px) {
     .links-content {
         grid-template-columns: repeat(2, 1fr);
