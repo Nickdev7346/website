@@ -1305,10 +1305,49 @@
     }
 
     .nav-menu {
-        gap: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        column-gap: 0.75rem;
+        row-gap: 0.35rem;
         font-size: 0.75rem;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        justify-content: space-between;
+    }
+
+    /* Top row: Home, Features, Updates, Links */
+    .nav-menu li:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .nav-menu li:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .nav-menu li:nth-child(3) {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .nav-menu li:nth-child(4) {
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    /* Bottom row: Rules, Staff, Join */
+    .nav-menu li:nth-child(5) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .nav-menu li:nth-child(6) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .nav-menu li:nth-child(7) {
+        grid-column: 3;
+        grid-row: 2;
     }
 
     .hero-title {
